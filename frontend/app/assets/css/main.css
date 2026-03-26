@@ -2,17 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ===== BASE ===== */
+
+:root {
+    --bg-main: #0b0f0e;
+    --bg-soft: #111716;
+
+    --primary: #d56154;
+    --secondary: #04523a;
+
+    --border: rgba(255,255,255,0.08);
+    --text-muted: rgba(255,255,255,0.6);
 }
 
-.animate-fade-in {
-    animation: fade-in 0.8s ease forwards;
+/* ===== BODY ===== */
+
+body {
+    @apply bg-[#0b0f0e] text-white antialiased;
+}
+
+/* ===== TYPOGRAPHY ===== */
+
+h1 {
+    @apply text-5xl md:text-6xl font-semibold tracking-tight;
+}
+
+h2 {
+    @apply text-3xl md:text-4xl font-medium tracking-tight;
+}
+
+p {
+    @apply text-gray-400 leading-relaxed;
+}
+
+/* ===== CARDS ===== */
+
+.card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md;
+}
+
+.card-hover {
+    @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* ===== BUTTON ===== */
+
+.btn-primary {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-200;
+    background: var(--primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+/* ===== REVEAL ===== */
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== GRID BACKGROUND ===== */
+
+.bg-grid {
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
