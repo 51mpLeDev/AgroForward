@@ -50,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="py-24 bg-black relative">
+  <section ref="sectionRef" class="py-24 bg-gradient-to-b from-black via-[#071a14] to-black relative">
     <div class="max-w-5xl mx-auto px-6">
 
       <!-- Заголовок -->
@@ -58,15 +58,19 @@ onMounted(() => {
         <h2 class="text-3xl md:text-4xl font-semibold text-white">
           История развития
         </h2>
+
         <p class="text-white/60 mt-4">
           Ключевые этапы роста компании
         </p>
+
+        <!-- линия бренда -->
+        <div class="mt-6 mx-auto w-24 h-[2px] bg-gradient-to-r from-primary to-secondary"></div>
       </div>
 
       <!-- Линия -->
       <div class="relative">
 
-        <div class="absolute left-1/2 top-0 w-px h-full bg-white/10"></div>
+        <div class="absolute left-1/2 top-0 w-px h-full bg-gradient-to-b from-secondary/40 via-white/10 to-secondary/40"></div>
 
         <!-- Items -->
         <div
@@ -78,32 +82,43 @@ onMounted(() => {
 
           <!-- Контент -->
           <div
-              class="w-full md:w-[45%] p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-700"
-              :class="visible
+              class="w-full md:w-[45%] p-6 rounded-2xl border border-secondary/20 bg-white/5 backdrop-blur-xl transition-all duration-700"
+              :class="[visible
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'"
+              : 'opacity-0 translate-y-10', index === timeline.length - 1 ? 'border-primary bg-primary/5' : '']"
               :style="{ transitionDelay: `${index * 150}ms` }"
           >
-            <div class="text-accent text-sm mb-2">
+
+            <!-- год -->
+            <div
+                class="text-sm mb-2 font-medium"
+                :class="index % 2 === 0 ? 'text-primary' : 'text-white'"
+            >
               {{ item.year }}
             </div>
+
             <h3 class="text-white text-lg font-semibold mb-2">
               {{ item.title }}
             </h3>
-            <p class="text-white/60 text-sm">
+
+            <p class="text-white/60 text-sm leading-relaxed">
               {{ item.text }}
             </p>
+
           </div>
 
           <!-- Точка -->
-          <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-black"></div>
+          <div
+              class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-4 border-black transition"
+              :class="index % 2 === 0 ? 'bg-primary' : 'bg-secondary'"
+          ></div>
 
         </div>
 
       </div>
     </div>
 
-    <!-- Glow -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/10 blur-[120px] rounded-full"></div>
+    <!-- аккуратный glow -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-secondary/10 blur-[100px] rounded-full"></div>
   </section>
 </template>
